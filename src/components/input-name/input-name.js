@@ -2,13 +2,15 @@ import React from 'react';
 
 import './input-name.css';
 
-const InputName = () => {
-    return (
-        <div className="form-group">
-            <label for="form-name">ФИО участника забега</label>
-            <input type="text" className="form-control" id="form-name" required/>
-        </div>
-    );
+class InputName extends React.Component {
+    render() {
+        return (
+            <div className="form-group">
+                <label htmlFor="form-name">ФИО участника забега</label>
+                <input type="text" className="form-control" id="form-name" required value={this.props.name}/>
+            </div>
+        );
+    };
 };
 
 export default InputName;

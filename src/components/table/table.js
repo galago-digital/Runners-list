@@ -6,7 +6,7 @@ const Table = ({ users }) => {
 
     const rows = users.map((user) => {
         return (
-            <tr>
+            <tr key={user.id}>
                 <td>{ user.name }</td>
                 <td>{ user.date }</td>
                 <td>{ user.email }</td>
@@ -19,16 +19,20 @@ const Table = ({ users }) => {
 
     return (
         <table className="table">
-            <tr>
-                <th>ФИО</th>
-                <th>Дата рождения</th>
-                <th>Email</th>
-                <th>Телефон</th>
-                <th>Дистанция</th>
-                <th>Сумма взноса, руб</th>
-            </tr>
-
-            { rows }
+            <thead>
+                <tr>
+                    <th>ФИО</th>
+                    <th>Дата рождения</th>
+                    <th>Email</th>
+                    <th>Телефон</th>
+                    <th>Дистанция</th>
+                    <th>Сумма взноса, руб</th>
+                </tr>
+            </thead>
+            <tbody>
+                { rows }
+            </tbody>
+            <tfoot></tfoot>
         </table>
     );
 };

@@ -5,23 +5,49 @@ import './input-phone.css';
 
 class InputPhone extends React.Component {
 
-    onInputClick() {
-        alert('hello')
+    constructor() {
+        super();
+
+        this.state = {
+            inputValue: "+7"
+        };
+
+        // this.onInputFocus = () => {
+        //     if(!/^\+\d*$/.test(this.state)) {
+        //         this.setState({
+        //             inputValue: "+7"
+        //         });
+        //     };
+        // };
+
+        this.onInputKeyPress = (e) => {
+            if(/\d/.test(e.key) && this.state.inputValue.length < 12) {
+                this.setState({
+                    inputValue: this.state.inputValue + e.key
+                });
+            };
+        };
+
+        this.onInputKeyDown = (e) => {
+            if(e.key === 'Backspace') {
+                console.log(e.key);
+            }
+        }
     }
-
-    // const phone = document.querySelector('#form-phone');
-
-
 
     render() {
         return (
             <div className="form-group">
-                <label for="form-phone">Телефон</label>
+                <label htmlFor="form-phone">Телефон</label>
                 <input type="tel" 
                     className="form-control" 
                     id="form-phone" 
                     required
-                    onClick={ this.onInputClick }/>
+                    value={ this.state.inputValue }
+                    onFocus={ this.onInputFocus }
+                    onKeyPress={ this.onInputKeyPress }
+                    onKeyDown={ this.onInputKeyDown }
+                    />
             </div>
         );
     };

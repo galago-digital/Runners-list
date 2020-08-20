@@ -5,7 +5,7 @@ import './select-distance.css';
 const SelectDistance = () => {
     return (
         <div className="form-group">
-            <label for="form-distance">Дистанция</label>
+            <label htmlFor="form-distance">Дистанция</label>
             <select className="form-control" id="form-distance">
                 <option>3 км</option>
                 <option>5 км</option>

@@ -1,0 +1,9 @@
+.table-filter {
+    align-items: center;
+    display: flex;
+    margin-bottom: .75rem;
+}
+
+.table-filter span {
+    margin-right: 1.5rem;
+}

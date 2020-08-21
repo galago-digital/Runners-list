@@ -8,39 +8,70 @@ import InputEmail from '../input-email/input-email';
 import InputPhone from '../input-phone/input-phone';
 import SelectDistance from '../select-distance/select-distance';
 import InputAmount from '../input-amount/input-amount';
+// import { object } from 'prop-types';
 
 class Form extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            name: '',
+            date: '',
+            email: '',
+            phone: '',
+            distance: 3,
+            payment: 0,
+        };
+    }
+
+    onInputChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    };
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.props.addUser(this.state.name, this.state.date, this.state.email, this.state.phone, this.state.distance, this.state.payment)
+        this.setState({
+            name: '',
+            date: '',
+            email: '',
+            phone: '',
+            payment: 0,
+        });
+    };
+
     render() {
         return (
-            <form className="form">
+            <form className="form" onSubmit={ this.onSubmit }>
                 <div className="row">
                     <div className="col-12 col-md-6">
-                        <InputName name = { this.props.forNewUser.name }></InputName>
+                        <InputName onInputChange = { this.onInputChange } value = { this.state.name }></InputName>
                     </div>
                     <div className="col-12 col-md-6">
-                        <InputDate></InputDate>
+                        <InputDate onInputChange = { this.onInputChange } value = { this.state.date }></InputDate>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-6">
-                        <InputEmail></InputEmail>
+                        <InputEmail onInputChange = { this.onInputChange } value = { this.state.email }></InputEmail>
                     </div>
                     <div className="col-12 col-md-6">
-                        <InputPhone></InputPhone>
+                        <InputPhone onInputChange = { this.onInputChange } value = { this.state.phone }></InputPhone>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-6">
-                        <SelectDistance></SelectDistance>
+                        <SelectDistance onInputChange = { this.onInputChange }></SelectDistance>
                     </div>
                     <div className="col-12 col-md-6">
-                        <InputAmount payment = { this.props.forNewUser.payment }></InputAmount>
+                        <InputAmount onInputChange = { this.onInputChange } value = { this.state.payment }></InputAmount>
                     </div>
                 </div>
                 <button 
                     className="btn btn-primary form-submit" 
-                    type="submit"
-                    onClick={() => this.props.onAddUser()}>
+                    type="submit">
                     Отправить заявку
                 </button>
             </form>

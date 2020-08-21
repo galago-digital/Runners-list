@@ -5,35 +5,35 @@ import './input-phone.css';
 
 class InputPhone extends React.Component {
 
-    constructor() {
-        super();
+    // constructor() {
+    //     super();
 
-        this.state = {
-            inputValue: "+7"
-        };
+    //     this.state = {
+    //         inputValue: "+7"
+    //     };
 
-        // this.onInputFocus = () => {
-        //     if(!/^\+\d*$/.test(this.state)) {
-        //         this.setState({
-        //             inputValue: "+7"
-        //         });
-        //     };
-        // };
+    //     // this.onInputFocus = () => {
+    //     //     if(!/^\+\d*$/.test(this.state)) {
+    //     //         this.setState({
+    //     //             inputValue: "+7"
+    //     //         });
+    //     //     };
+    //     // };
 
-        this.onInputKeyPress = (e) => {
-            if(/\d/.test(e.key) && this.state.inputValue.length < 12) {
-                this.setState({
-                    inputValue: this.state.inputValue + e.key
-                });
-            };
-        };
+    //     this.onInputKeyPress = (e) => {
+    //         if(/\d/.test(e.key) && this.state.inputValue.length < 12) {
+    //             this.setState({
+    //                 inputValue: this.state.inputValue + e.key
+    //             });
+    //         };
+    //     };
 
-        this.onInputKeyDown = (e) => {
-            if(e.key === 'Backspace') {
-                console.log(e.key);
-            }
-        }
-    }
+    //     this.onInputKeyDown = (e) => {
+    //         if(e.key === 'Backspace') {
+    //             console.log(e.key);
+    //         }
+    //     }
+    // }
 
     render() {
         return (
@@ -43,17 +43,14 @@ class InputPhone extends React.Component {
                     className="form-control" 
                     id="form-phone" 
                     required
-                    value={ this.state.inputValue }
-                    onFocus={ this.onInputFocus }
-                    onKeyPress={ this.onInputKeyPress }
-                    onKeyDown={ this.onInputKeyDown }
-                    />
+                    name="phone"
+                    onChange={ this.props.onInputChange }
+                    value={ this.props.value }/>
             </div>
         );
     };
 
 };
-
 
 // const InputPhone = () => {
 //     return (

@@ -5,6 +5,7 @@ import './index.css';
 import Form from './components/form/form';
 import Headline from './components/headline/headline';
 import Table from './components/table/table';
+import TableFilter from './components/table-filter/table-filter';
 
 class App extends React.Component {
 
@@ -50,19 +51,20 @@ class App extends React.Component {
 					distance: 3,
 					payment: 1500
 				}
-			]
+			],
+			filter: 'id'
 		};
 	}
 
-	addUser = () => {
+	addUser = (name, date, email, phone, distance, payment) => {
 		const newUser = {
 			id: this.maxId++,
-			date: 123,
-			name: 123,
-			email: 232,
-			phone: 1,
-			distance: 1,
-			payment: 1
+			date,
+			name,
+			email,
+			phone,
+			distance: +distance,
+			payment: +payment,
 		}
 
 		this.setState(({ users }) => {
@@ -78,12 +80,30 @@ class App extends React.Component {
 		});
 	};
 
+	filter(users, filter) {
+
+		const newUsers = [...users];
+
+		if (filter === 'id') {
+			return users;
+		} else {
+			return newUsers.sort((a, b) => a[filter] > b[filter] ? 1 : -1);
+		}
+	};
+
+	changeFilter = (val) => {
+		this.setState({ filter: val })
+	};
+
     render() {
+		const filteredUsers = this.filter(this.state.users, this.state.filter);
+
 		return (
 			<div className="container">
 				<Headline />
-				<Form onAddUser={ this.addUser } forNewUser={ this.forNewUser }/>
-				<Table users={ this.state.users } />
+				<Form addUser={ this.addUser } forNewUser={ this.forNewUser }/>
+				<TableFilter filter={ this.state.filter } changeFilter={ this.changeFilter }/>
+				<Table users={ filteredUsers } />
 			</div>
 		);
 	};

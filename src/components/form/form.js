@@ -8,7 +8,6 @@ import InputEmail from '../input-email/input-email';
 import InputPhone from '../input-phone/input-phone';
 import SelectDistance from '../select-distance/select-distance';
 import InputAmount from '../input-amount/input-amount';
-// import { object } from 'prop-types';
 
 class Form extends React.Component {
 
@@ -21,6 +20,7 @@ class Form extends React.Component {
             phone: '',
             distance: 3,
             payment: 0,
+            disabled: true,
         };
     }
 
@@ -28,6 +28,21 @@ class Form extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
+
+        if (this.state.name.length > 0 
+            && this.state.date.length > 0 
+            && this.state.email.length > 0 
+            // && !this.state.phone.includes('_')
+            && this.state.phone.length > 0) 
+            {
+                this.setState({
+                    disabled: false
+                });
+            } else {
+                this.setState({
+                    disabled: true
+                });
+            }
     };
 
     onSubmit = (e) => {
@@ -71,7 +86,8 @@ class Form extends React.Component {
                 </div>
                 <button 
                     className="btn btn-primary form-submit" 
-                    type="submit">
+                    type="submit"
+                    disabled = { this.state.disabled }>
                     Отправить заявку
                 </button>
             </form>

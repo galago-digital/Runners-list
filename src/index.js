@@ -1,3 +1,4 @@
+import 'react-app-polyfill/ie11';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -57,9 +58,11 @@ class App extends React.Component {
 	}
 
 	addUser = (name, date, email, phone, distance, payment) => {
+		const newDate = date.slice(8) + '.' + date.slice(5, 7) + '.' + date.slice(0, 4);
+
 		const newUser = {
 			id: this.maxId++,
-			date,
+			date: newDate,
 			name,
 			email,
 			phone,

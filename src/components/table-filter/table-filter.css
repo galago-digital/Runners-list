@@ -7,3 +7,15 @@
 .table-filter span {
     margin-right: 1.5rem;
 }
+
+@media (max-width: 768px) {
+    .table-filter {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .table-filter button {
+        font-size: 0.875rem;
+    }
+}

@@ -7,12 +7,12 @@ const Table = ({ users }) => {
     const rows = users.map((user) => {
         return (
             <tr key={user.id}>
-                <td>{ user.name }</td>
-                <td>{ user.date }</td>
-                <td>{ user.email }</td>
-                <td>{ user.phone }</td>
-                <td>{ user.distance }</td>
-                <td>{ user.payment }</td>
+                <td data-label="ФИО">{ user.name }</td>
+                <td data-label="Дата рождения">{ user.date }</td>
+                <td data-label="Email">{ user.email }</td>
+                <td data-label="Телефон">{ user.phone }</td>
+                <td data-label="Дистанция">{ user.distance }</td>
+                <td data-label="Сумма взноса, руб">{ user.payment }</td>
             </tr>
         );
     });

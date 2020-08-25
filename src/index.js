@@ -1,8 +1,6 @@
-import 'react-app-polyfill/ie11';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './index.css';
 import Form from './components/form/form';
 import Headline from './components/headline/headline';
 import Table from './components/table/table';
@@ -58,7 +56,10 @@ class App extends React.Component {
 	}
 
 	addUser = (name, date, email, phone, distance, payment) => {
-		const newDate = date.slice(8) + '.' + date.slice(5, 7) + '.' + date.slice(0, 4);
+		let newDate = date;
+		if (!(navigator.appName == 'Microsoft Internet Explorer')) {
+			newDate = date.slice(8) + '.' + date.slice(5, 7) + '.' + date.slice(0, 4);
+		}
 
 		const newUser = {
 			id: this.maxId++,

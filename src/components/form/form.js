@@ -32,8 +32,8 @@ class Form extends React.Component {
         if (this.state.name.length > 0 
             && this.state.date.length > 0 
             && this.state.email.length > 0 
-            // && !this.state.phone.includes('_')
-            && this.state.phone.length > 0) 
+            && !this.state.phone.includes('_')
+            && this.state.phone.length > 11) 
             {
                 this.setState({
                     disabled: false

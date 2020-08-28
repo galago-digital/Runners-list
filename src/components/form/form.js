@@ -28,7 +28,13 @@ class Form extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-
+        // даже если оставить такую длинную проверку можно упросить код
+        // ведь тут задача по состоянию полей определить состояние кнопки - disabled: true || false
+        // const isDisabled = this.state.name.length > 0 && this.state.date.length > 0 ....
+        // this.setState({
+        //     disabled: isDisabled
+        //});
+        // убираем if/else, код короче, при этом остается понятным и читабельным
         if (this.state.name.length > 0 
             && this.state.date.length > 0 
             && this.state.email.length > 0 
@@ -48,6 +54,11 @@ class Form extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.addUser(this.state.name, this.state.date, this.state.email, this.state.phone, this.state.distance, this.state.payment)
+        // состояние полей сбрасывается
+        // забыта дистанция - сохраяет предыдущий выбор
+        // забыта кнопка отправить - она остается разблокированной
+        // при этом т.к. у всех полей атрибут required - они тут же отмечаются как не правильно заполененные
+        // выглядит странно для ползователя которы только что отправил форму
         this.setState({
             name: '',
             date: '',

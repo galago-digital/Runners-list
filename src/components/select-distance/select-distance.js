@@ -1,5 +1,7 @@
 import React from 'react';
 
+// зачем имортировать пустой файл? и создавать пустые файлы
+// лишний код
 import './select-distance.css';
 
 class SelectDistance extends React.Component {

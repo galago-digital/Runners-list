@@ -2,6 +2,8 @@ import React from 'react';
 
 import './input-amount.css';
 
+// input-amount, name, email - так и напрашиваются сделать их одним комопнентом
+// компонент на каждый инпут как сейчас создает не мало повторяющегося кода
 class InputAmount extends React.Component {
     // constructor() {
     //     super();
